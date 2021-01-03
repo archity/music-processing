@@ -1,0 +1,9 @@
+# Environments
+env/
+venv/
+
+# IntelliJ 
+.idea/
+
+# ipynb related
+.ipynb_checkpoints
