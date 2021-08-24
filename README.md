@@ -1,7 +1,7 @@
 # Music Processing
 
 <p align="center">
-<img width="350" src="./img/plot_wave_white_BG.JPG">
+<img width="350" src="./img/plot_wave_white_bg.jpg">
 </p>
 
 This repository contains work related to audio processing and music genre classifier. The documentation for each of the following sections can be found within the corresponding notebooks.
