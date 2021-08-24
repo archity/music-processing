@@ -6,16 +6,16 @@
 
 This repository contains work related to audio processing and music genre classifier. The documentation for each of the following sections can be found within the corresponding notebooks.
 
-- [X] Input Data Visualization
-- [X] MFCC Extraction
-- [X] Genre Classifier using GTZAN dataset
-- [ ] Extracting & testing songs from Spotify
+- [X] 1. Input Data Visualization
+- [X] 2. MFCC Extraction
+- [X] 3. Genre Classifier using GTZAN dataset
+- [ ] 4. Extracting & testing songs from Spotify
 
 ---
 
 ## 1. Input Data Visualization
 
-[Notebook]()
+[Notebook](./1-basic-input-data-visualization.ipynb)
 
 Some basic analysis of an audio file like waveform plotting, spectrum display were performed in order to understand about audio data type
 
@@ -31,7 +31,7 @@ Some basic analysis of an audio file like waveform plotting, spectrum display we
 
 ## 2. MFCC Extraction
 
-[Notebook]()
+[Notebook](./2-mfcc-extractor.ipynb)
 
 <p align="left">
 <img width="500" src="./img/wave_to_mfcc.jpg">
@@ -41,7 +41,7 @@ Utility to read all the .wav files stored in separate folders according to their
 
 ## 3. Genre Classifier using GTZAN Dataset
 
-[Notebook]()
+[Notebook](3-gtzan-neural-network.ipynb)
 
 <p align="left">
 <img width="250" src="./img/train_test_plot_LSTM_white_bg.jpg">
