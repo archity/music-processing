@@ -15,7 +15,7 @@ This repository contains work related to audio processing and music genre classi
 
 ## 1. Input Data Visualization
 
-[Notebook](./1-basic-input-data-visualization.ipynb)
+[Notebook](./notebooks/1-basic-input-data-visualization.ipynb)
 
 Some basic analysis of an audio file like waveform plotting, spectrum display were performed in order to understand about audio data type
 
@@ -31,7 +31,7 @@ Some basic analysis of an audio file like waveform plotting, spectrum display we
 
 ## 2. MFCC Extraction
 
-[Notebook](./2-mfcc-extractor.ipynb)
+[Notebook](./notebooks/2-mfcc-extractor.ipynb)
 
 <p align="left">
 <img width="500" src="./img/wave_to_mfcc.jpg">
@@ -41,7 +41,7 @@ Utility to read all the .wav files stored in separate folders according to their
 
 ## 3. Genre Classifier using GTZAN Dataset
 
-[Notebook](3-gtzan-neural-network.ipynb)
+[Notebook](./notebooks/3-gtzan-neural-network.ipynb)
 
 <p align="left">
 <img width="250" src="./img/train_test_plot_LSTM_white_bg.jpg">

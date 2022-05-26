@@ -62,7 +62,7 @@ def download_track_preview(tracks, playlist_name):
 
 if __name__ == "__main__":
     client_id = "a7998e68e86641bf9520cea3b642e8cc"
-    client_secret = "2bcb1a4492ab40cfbdcfd0aed6424ddb"
+    client_secret = "597bbf72127b48e2a8bb2b163c6932fa"
     playlist_id = "spotify:playlist:7eYZpOTqL0Y3kwEsxNr0PI"
 
     sp, playlist = request_playlist(client_id=client_id, client_secret=client_secret, playlist_id=playlist_id)
