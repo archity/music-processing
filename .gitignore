@@ -14,3 +14,6 @@ venv/
 
 # Setup files
 src.egg-info/
+
+# Python cache
+__pycache__/
