@@ -5,12 +5,9 @@ import requests
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
+from src.utils import make_directory
+
 out_path = "./../../data/playlist-tracks/"
-
-
-def make_directory(path):
-    if not os.path.exists(path):
-        os.makedirs(path)
 
 
 def request_playlist(client_id, client_secret, playlist_id):

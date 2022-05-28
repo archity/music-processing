@@ -2,11 +2,10 @@ import json
 import os
 import math
 import librosa
-import csv
 
-DATASET_PATH = "data/test_songs"
-JSON_PATH = "data/test_songs_mfcc_json.json"
-# CSV_PATH = "data/gtzan_mfcc_csv.csv"
+DATASET_PATH = "./../data/test_songs"
+JSON_PATH = "./../data/test_songs_mfcc_json.json"
+
 SAMPLE_RATE = 22050
 TRACK_DURATION = 30  # measured in seconds
 SAMPLES_PER_TRACK = SAMPLE_RATE * TRACK_DURATION

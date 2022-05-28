@@ -1,5 +1,6 @@
 # Input files
 data/
+extras/
 
 # Environments
 env/
@@ -10,3 +11,6 @@ venv/
 
 # ipynb related
 .ipynb_checkpoints
+
+# Setup files
+src.egg-info/
