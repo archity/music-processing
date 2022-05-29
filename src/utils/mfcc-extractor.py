@@ -3,16 +3,17 @@ import os
 import math
 import librosa
 
-DATASET_PATH = "./../data/test_songs"
-JSON_PATH = "./../data/test_songs_mfcc_json.json"
+DATASET_PATH = "./../../data/playlist-tracks/20th Century/wav"
+JSON_PATH = "./../../data/playlist-tracks/20th Century/wav/playlist_songs_mfcc_json.json"
 
 SAMPLE_RATE = 22050
-TRACK_DURATION = 30  # measured in seconds
+TRACK_DURATION = 29  # measured in seconds
 SAMPLES_PER_TRACK = SAMPLE_RATE * TRACK_DURATION
 
 
-def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=5):
+def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=5, subfolders=True):
     """Extracts MFCCs from music dataset and saves them into a json file along witgh genre labels.
+        :param subfolders: Whether to look for wav files within all subfolders of dataset_path, or just the root
         :param dataset_path (str): Path to dataset
         :param json_path (str): Path to json file used to save MFCCs
         :param num_mfcc (int): Number of coefficients to extract
@@ -37,12 +38,10 @@ def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, 
     for i, (dirpath, dirnames, filenames) in enumerate(os.walk(dataset_path)):
 
         # ensure we're processing a genre sub-folder level
-        if dirpath is not dataset_path:
+        if dirpath is not dataset_path and subfolders is True:
 
             # save genre label (i.e., sub-folder name) in the mapping
-            semantic_label = dirpath.split('l\\')[-1]
-            # print(dirpath)
-            # print(semantic_label)
+            semantic_label = dirpath.split('/')[-1]
             data["mapping"].append(semantic_label)
             print("\nProcessing: {}".format(semantic_label))
 
@@ -64,7 +63,6 @@ def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, 
                     mfcc = librosa.feature.mfcc(signal[start:finish], sample_rate, n_mfcc=num_mfcc, n_fft=n_fft,
                                                 hop_length=hop_length)
                     mfcc = mfcc.T
-                    print(mfcc.shape)
                     # store only mfcc feature with expected number of vectors
                     if len(mfcc) == num_mfcc_vectors_per_segment:
                         data["mfcc"].append(mfcc.tolist())
@@ -74,10 +72,6 @@ def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, 
     # save MFCCs to json file
     with open(json_path, "w") as fp:
         json.dump(data, fp, indent=4)
-
-    # with open(csv_path, 'w') as csv_fp:
-    #     for key in data.keys():
-    #         csv_fp.write("%s, %s\n" % (key, data[key]))
 
 
 if __name__ == "__main__":

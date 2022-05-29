@@ -1,11 +1,10 @@
-import os.path
 import re
 
 import requests
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-from src.utils import make_directory
+from src.utils.misc import make_directory
 
 out_path = "./../../data/playlist-tracks/"
 
@@ -59,7 +58,7 @@ def download_track_preview(tracks, playlist_name):
 
 if __name__ == "__main__":
     client_id = "a7998e68e86641bf9520cea3b642e8cc"
-    client_secret = "597bbf72127b48e2a8bb2b163c6932fa"
+    client_secret = "3140f10c85d84cd398a48b3f351570fe"
     playlist_id = "spotify:playlist:7eYZpOTqL0Y3kwEsxNr0PI"
 
     sp, playlist = request_playlist(client_id=client_id, client_secret=client_secret, playlist_id=playlist_id)
