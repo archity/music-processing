@@ -38,7 +38,7 @@ def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, 
     for i, (dirpath, dirnames, filenames) in enumerate(os.walk(dataset_path)):
 
         # ensure we're processing a genre sub-folder level
-        if dirpath is not dataset_path and subfolders is True:
+        if dirpath is not dataset_path or subfolders is False:
 
             # save genre label (i.e., sub-folder name) in the mapping
             semantic_label = dirpath.split('/')[-1]
