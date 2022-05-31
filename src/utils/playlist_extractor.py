@@ -38,14 +38,15 @@ def show_tracks(tracks):
         print("\n")
 
 
-def download_track_preview(tracks, playlist_name):
+def download_track_preview(tracks, playlist_name, out_path):
     """
     Download a 30-second track preview of all the songs in the playlist
     :param tracks: A dict containing all the tracks' details in a list "items"
     :param playlist_name: Name of the playlist for folder name to save tracks into
-    :return:
+
+    :return: path: Path to output mp3 directory
     """
-    path = out_path + playlist_name + "/"
+    path = out_path + playlist_name + "/mp3/"
     make_directory(path=path)
     for item in tracks['items']:
         track = item['track']
@@ -54,11 +55,13 @@ def download_track_preview(tracks, playlist_name):
         if clip_to_download is not None:
             response = requests.get(clip_to_download)
             open(file=path + track_name + ".mp3", mode="wb").write(response.content)
+    print(f"{len(tracks)} tracks downloaded.")
+    return path
 
 
 if __name__ == "__main__":
-    client_id = "a7998e68e86641bf9520cea3b642e8cc"
-    client_secret = "3140f10c85d84cd398a48b3f351570fe"
+    client_id = ""
+    client_secret = ""
     playlist_id = "spotify:playlist:7eYZpOTqL0Y3kwEsxNr0PI"
 
     sp, playlist = request_playlist(client_id=client_id, client_secret=client_secret, playlist_id=playlist_id)
@@ -69,4 +72,4 @@ if __name__ == "__main__":
     results = sp.playlist(playlist['id'], fields="tracks,next")
     tracks = results['tracks']
     show_tracks(tracks)
-    download_track_preview(tracks=tracks, playlist_name=playlist['name'])
+    download_track_preview(tracks=tracks, playlist_name=playlist['name'], out_path=out_path)
