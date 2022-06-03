@@ -17,3 +17,6 @@ src.egg-info/
 
 # Python cache
 __pycache__/
+
+# Models
+model/
