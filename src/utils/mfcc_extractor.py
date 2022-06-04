@@ -3,15 +3,16 @@ import os
 import math
 import librosa
 
-DATASET_PATH = "./../../data/playlist-tracks/20th Century/wav"
-JSON_PATH = "./../../data/playlist-tracks/20th Century/wav/playlist_songs_mfcc_json.json"
+DATASET_PATH = "./../../data/archive/Data/genres_original"
+JSON_PATH = "./../../data/gtzan_mfcc_json.json"
 
 SAMPLE_RATE = 22050
 TRACK_DURATION = 29  # measured in seconds
 SAMPLES_PER_TRACK = SAMPLE_RATE * TRACK_DURATION
 
 
-def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=5, subfolders=True):
+def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=5, subfolders=True,
+              save_with_fname=False):
     """Extracts MFCCs from music dataset and saves them into a json file along witgh genre labels.
         :param subfolders: Whether to look for wav files within all subfolders of dataset_path, or just the root
         :param dataset_path (str): Path to dataset
@@ -20,6 +21,7 @@ def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, 
         :param n_fft (int): Interval we consider to apply FFT. Measured in # of samples
         :param hop_length (int): Sliding window for FFT. Measured in # of samples
         :param: num_segments (int): Number of segments we want to divide sample tracks into
+        :param save_with_fname: Save the name of the song in the 'label', if True
         :return:
         """
 
@@ -66,7 +68,10 @@ def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, 
                     # store only mfcc feature with expected number of vectors
                     if len(mfcc) == num_mfcc_vectors_per_segment:
                         data["mfcc"].append(mfcc.tolist())
-                        data["labels"].append(i - 1)
+                        if save_with_fname is True:
+                            data["labels"].append(file_path.split('/')[-1])
+                        else:
+                            data["labels"].append(i - 1)
                         # print("{}, segment:{}".format(file_path, d + 1))
 
     # save MFCCs to json file
