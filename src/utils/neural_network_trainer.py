@@ -94,17 +94,22 @@ def plot_results(history, name, out_path: str):
     plt.show()
 
 
+def simple_nn_model(X):
+    model = keras.Sequential()
+    model.add(keras.layers.Flatten(input_shape=(X.shape[1], X.shape[2])))
+    model.add(keras.layers.Dense(512, activation='relu'))
+    model.add(keras.layers.Dense(512, activation='relu'))
+    model.add(keras.layers.Dense(10, activation='softmax'))
+    return model
+
+
 if __name__ == "__main__":
     # Load MFCC dataset
     X, y = load_data(json_path="./../../data/gtzan_mfcc_json.json")
     train_data, validation_data = split_dataset(X=X, y=y)
 
     # Prepare model
-    model = keras.Sequential()
-    model.add(keras.layers.Flatten(input_shape=(X.shape[1], X.shape[2])))
-    model.add(keras.layers.Dense(512, activation='relu'))
-    model.add(keras.layers.Dense(512, activation='relu'))
-    model.add(keras.layers.Dense(10, activation='softmax'))
+    model = simple_nn_model(X)
 
     # Train model
     history = compile_and_train(model, train_data=train_data, validation_data=validation_data, name="basic",
