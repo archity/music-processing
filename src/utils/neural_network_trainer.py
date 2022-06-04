@@ -2,6 +2,7 @@ import datetime
 import json
 import os.path
 
+from scipy.stats import mode
 import keras
 from matplotlib import pyplot as plt
 import numpy as np
@@ -101,6 +102,23 @@ def simple_nn_model(X):
     model.add(keras.layers.Dense(512, activation='relu'))
     model.add(keras.layers.Dense(10, activation='softmax'))
     return model
+
+
+def process_predictions(predictions, y, segments_per_track):
+    def most_common(listt):
+        return mode(listt).mode[0]
+
+    print("predictions shape:", predictions.shape)
+    genre_segment_list = []
+    genre_list = []
+    song_name_list = []
+    for segment in range(predictions.shape[0]):
+        if (segment+1) % segments_per_track == 0:
+            genre_list.append(most_common(genre_segment_list))
+            song_name_list.append(y[segment])
+            genre_segment_list = []
+        genre_segment_list.append(np.argmin(predictions[segment, :]))
+    return genre_list, song_name_list
 
 
 if __name__ == "__main__":
