@@ -24,7 +24,8 @@ def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, 
         :param save_with_fname: Save the name of the song in the 'label', if True
         :return:
         """
-
+    if os.path.exists(json_path):
+        return
     # dictionary to store mapping, labels, and MFCCs
     data = {
         "mapping": [],
