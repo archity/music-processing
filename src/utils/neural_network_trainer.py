@@ -117,7 +117,7 @@ def process_predictions(predictions, y, segments_per_track):
             genre_list.append(np.unique(np.array(genre_segment_list)))
             song_name_list.append(y[segment])
             genre_segment_list = []
-        genre_segment_list.append(np.argmin(predictions[segment, :]))
+        genre_segment_list.append(np.argmax(predictions[segment, :]))
     return genre_list, song_name_list
 
 
