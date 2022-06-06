@@ -104,6 +104,17 @@ def simple_nn_model(X):
     return model
 
 
+def lstm_model(X):
+    input_shape = (X.shape[1], X.shape[2])
+    model = keras.Sequential()
+    model.add(keras.layers.LSTM(64, input_shape=input_shape, return_sequences=True))
+    model.add(keras.layers.LSTM(64))
+    model.add(keras.layers.Dense(64, activation='relu'))
+    model.add(keras.layers.Dropout(0.1))
+    model.add(keras.layers.Dense(10, activation='softmax'))
+    return model
+
+
 def process_predictions(predictions, y, segments_per_track):
     def most_common(listt):
         return mode(listt).mode[0]

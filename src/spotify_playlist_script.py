@@ -7,7 +7,7 @@ from extras.spotify_creds import client_id, client_secret
 from src.utils.mfcc_extractor import save_mfcc
 from src.utils.mp3_to_wav import convert_mp3_to_wav
 from src.utils.neural_network_trainer import load_data, split_dataset, simple_nn_model, compile_and_train, \
-    plot_results, process_predictions
+    plot_results, process_predictions, lstm_model
 from src.utils.playlist_extractor import request_playlist, download_track_preview
 
 out_dir = "./../data/playlist-tracks/"
@@ -35,12 +35,13 @@ if __name__ == "__main__":
               num_segments=10, subfolders=True)
 
     # 5. Train the model on sample dataset (if not already trained)
-    model_type = "basic"
+    model_dict = {"basic": simple_nn_model, "lstm": lstm_model}
+    model_type = "lstm"
     model_path = f"./../model/saved_model_{model_type}.h5"
     if not os.path.exists(model_path):
         X, y = load_data(json_path=gtzan_json)
         train_data, validation_data = split_dataset(X=X, y=y)
-        model = simple_nn_model(X)
+        model = model_dict[f"{model_type}"](X)
         history = compile_and_train(model, train_data=train_data, validation_data=validation_data, name=f"{model_type}",
                                     training_dump_path="./../model/")
         plot_results(history=history, name=f"{model_type}", out_path="./../../img/")
@@ -55,4 +56,4 @@ if __name__ == "__main__":
     genre_list, song_name_list = process_predictions(predictions, y, segments_per_track=10)
     result_dict = {"Song": song_name_list, "Genre Index": genre_list}
     df = pd.DataFrame(result_dict)
-    df.to_csv(wav_dir + "../" + 'playlist_genre_test_results.csv')
+    df.to_csv(wav_dir + "../" + f"playlist_genre_test_results_{model_type}.csv")
