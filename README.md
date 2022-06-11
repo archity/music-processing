@@ -93,13 +93,13 @@ Genre of a song is quite subjective, and a song can be composed of multiple genr
 
 Results of an LSTM based trained model on some of songs from the playlist [20th Century](https://open.spotify.com/playlist/7eYZpOTqL0Y3kwEsxNr0PI?si=457d7889fa3a4343):
 
-| Song Name                                                                     | Predicted Genre    |
-|-------------------------------------------------------------------------------|--------------------|
-| [Black or White](https://en.wikipedia.org/wiki/Black_or_White)                | 3, **4**, **7**    |
-| [Danger Zone](https://en.wikipedia.org/wiki/Danger_Zone_(Kenny_Loggins_song)) | 3, 4, 7, **9**     |
-| [I Ran (So Far Away)](https://en.wikipedia.org/wiki/I_Ran_(So_Far_Away))      | 3, 4, **9**        |
-| [Fast Car](https://en.wikipedia.org/wiki/Fast_Car)                            | 2, 4, **7**, 8     |
-| [Take My Breadth Away](https://en.wikipedia.org/wiki/Take_My_Breath_Away)     | 2, **3**, **9**    |
-| [99 Luftballons](https://en.wikipedia.org/wiki/99_Luftballons)                | 2, **3**, 6, **9** |
+| Song Name                                                                     | Predicted Genre        |
+|-------------------------------------------------------------------------------|------------------------|
+| [Black or White](https://en.wikipedia.org/wiki/Black_or_White)                | 3, **'4'**, **'7'**    |
+| [Danger Zone](https://en.wikipedia.org/wiki/Danger_Zone_(Kenny_Loggins_song)) | 3, 4, 7, **'9'**       |
+| [I Ran (So Far Away)](https://en.wikipedia.org/wiki/I_Ran_(So_Far_Away))      | 3, 4, **'9'**          |
+| [Fast Car](https://en.wikipedia.org/wiki/Fast_Car)                            | 2, 4, **'7'**, 8       |
+| [Take My Breadth Away](https://en.wikipedia.org/wiki/Take_My_Breath_Away)     | 2, **'3'**, **'9'**    |
+| [99 Luftballons](https://en.wikipedia.org/wiki/99_Luftballons)                | 2, **'3'**, 6, **'9'** |
 
-**Bold** ones indicate the genre also reported by the respective song's Wikipedia page (including stylistic origins)
+Indices in quotes and **bold** indicate the genre also reported by the respective song's Wikipedia page (including stylistic origins)
