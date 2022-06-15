@@ -1,7 +1,7 @@
 import os
 
 import pandas as pd
-from tensorflow.keras.models import load_model
+from tensorflow.python.keras.models import load_model
 
 from extras.spotify_creds import client_id, client_secret
 from src.utils.mfcc_extractor import save_mfcc

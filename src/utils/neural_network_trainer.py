@@ -7,7 +7,7 @@ import keras
 from matplotlib import pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
-from tensorflow.keras.models import load_model
+from tensorflow.python.keras.models import load_model
 
 from src.utils.misc import make_directory
 
