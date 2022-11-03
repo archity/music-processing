@@ -17,6 +17,21 @@ This repository contains work related to audio processing and music genre classi
 
 <br>
 
+## 0. Installation
+
+- From the root of this repository, install the top-level package `src`:
+
+    ```commandline
+    pip install -e .
+    ```
+- Install all the libraries in the `requirements.txt` file: 
+
+    ```commandline
+    pip install -r requirements.txt
+    ```
+
+<br>
+
 ## 1. Input Data Visualization
 
 [Notebook](./notebooks/1-basic-input-data-visualization.ipynb)
