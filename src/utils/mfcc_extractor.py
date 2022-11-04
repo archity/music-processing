@@ -11,6 +11,20 @@ TRACK_DURATION = 29  # measured in seconds
 SAMPLES_PER_TRACK = SAMPLE_RATE * TRACK_DURATION
 
 
+def signal_variables(samples_per_track, num_segments, hop_length):
+    """
+    Perform some calculations to be used later during MFCC extraction
+    :param samples_per_track: Total number of samples of the track, determined by the sampling rate and track duration
+    :param num_segments: Number of segments we want to divide sample tracks into
+    :param hop_length: Sliding window for FFT. Measured in # of samples
+    :return: Samples per segment, and the MFCC vectors per segment
+    """
+    samples_per_segment = int(samples_per_track / num_segments)
+    num_mfcc_vectors_per_segment = math.ceil(samples_per_segment / hop_length)
+
+    return samples_per_segment, num_mfcc_vectors_per_segment
+
+
 def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=5, subfolders=True,
               save_with_fname=False):
     """Extracts MFCCs from music dataset and saves them into a json file along witgh genre labels.
@@ -32,11 +46,11 @@ def save_mfcc(dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, 
         "labels": [],
         "mfcc": []
     }
-    print("No. of segments: ", num_segments)
-    samples_per_segment = int(SAMPLES_PER_TRACK / num_segments)
-    print("No. of samples per segment: ", samples_per_segment)
-    num_mfcc_vectors_per_segment = math.ceil(samples_per_segment / hop_length)
-    print("No. of MFCCs per segment: ", num_mfcc_vectors_per_segment)
+
+    samples_per_segment, num_mfcc_vectors_per_segment = signal_variables(samples_per_track=SAMPLES_PER_TRACK,
+                                                                         num_segments=num_segments,
+                                                                         hop_length=hop_length)
+
     # loop through all genre sub-folder
     for i, (dirpath, dirnames, filenames) in enumerate(os.walk(dataset_path)):
 
